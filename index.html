@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Meenal ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+overflow-x:hidden;
+background:linear-gradient(-45deg,#ff4e8d,#ff9a9e,#fad0c4,#fbc2eb);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+min-height:100vh;
+color:white;
+}
+
+@keyframes bg{
+0%{background-position:0 50%}
+50%{background-position:100% 50%}
+100%{background-position:0 50%}
+}
+
+.container{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:80px 20px;
+}
+
+.card{
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+padding:40px;
+border-radius:25px;
+box-shadow:0 20px 40px rgba(0,0,0,.25);
+max-width:850px;
+animation:fade 2s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(50px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+h1{
+font-size:60px;
+}
+
+.typing{
+font-size:28px;
+margin-top:15px;
+min-height:40px;
+color:#fff7b2;
+font-weight:600;
+}
+
+.message{
+margin-top:30px;
+font-size:20px;
+line-height:1.8;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-top:40px;
+}
+
+.gallery img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+transition:.4s;
+box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+
+.gallery img:hover{
+transform:scale(1.08);
+}
+
+button{
+margin-top:35px;
+padding:15px 35px;
+font-size:18px;
+border:none;
+border-radius:40px;
+background:white;
+color:#ff2d75;
+cursor:pointer;
+font-weight:bold;
+transition:.4s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+.balloon{
+position:fixed;
+bottom:-120px;
+width:60px;
+animation:float linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0);
+}
+100%{
+transform:translateY(-130vh);
+}
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+}
+
+footer{
+padding:40px;
+text-align:center;
+font-size:18px;
+}
+
+@media(max-width:768px){
+h1{
+font-size:38px;
+}
+.typing{
+font-size:22px;
+}
+.message{
+font-size:18px;
+}
+}
+</style>
+
+</head>
+<body>
+
+<canvas id="confetti"></canvas>
+
+<div class="container">
+
+<div class="card">
+
+<h1>🎂 Happy Birthday Meenal 🎂</h1>
+
+<div class="typing"></div>
+
+<p class="message">
+May your smile always shine brighter than the stars ✨.<br><br>
+
+May every dream come true ❤️<br>
+May happiness follow you forever 🌸<br>
+May success, love and good health always stay with you 💖
+</p>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600">
+
+<img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600">
+
+<img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600">
+
+<img src="https://images.unsplash.com/photo-1464349153735-7db50ed83c84?w=600">
+
+</div>
+
+<button onclick="playMusic()">
+🎵 Play Birthday Song
+</button>
+
+<audio id="music">
+<source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+</div>
+
+<footer>
+Made with ❤️ Especially for Meenal
+</footer>
+
+<script>
+
+const text="Wishing You Endless Happiness, Love & Success ✨";
+let i=0;
+
+function type(){
+if(i<text.length){
+document.querySelector(".typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,80);
+}
+}
+type();
+
+function playMusic(){
+document.getElementById("music").play();
+}
+
+for(let i=0;i<18;i++){
+
+let b=document.createElement("div");
+b.innerHTML="🎈";
+b.className="balloon";
+
+b.style.left=Math.random()*100+"vw";
+b.style.fontSize=(40+Math.random()*30)+"px";
+b.style.animationDuration=(8+Math.random()*6)+"s";
+b.style.animationDelay=Math.random()*5+"s";
+
+document.body.appendChild(b);
+
+}
+
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const pieces=[];
+
+for(let i=0;i<250;i++){
+pieces.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*6+2,
+d:Math.random()*250
+});
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+pieces.forEach(p=>{
+
+ctx.beginPath();
+
+ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
+
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+ctx.fill();
+
+p.y+=2;
+if(p.y>canvas.height){
+p.y=0;
+}
+
+});
+
+requestAnimationFrame(draw);
+
+}
+
+draw();
+
+window.onresize=()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+};
+
+</script>
+
+</body>
+</html>
